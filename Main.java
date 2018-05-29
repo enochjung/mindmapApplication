@@ -13,6 +13,11 @@ public class Main extends JFrame
 	
 	public static void main(String[] args)
 	{
+<<<<<<< HEAD
 		Main frame = new Main();
+=======
+		System.out.println("Hello, world!");
+		System.out.println("Hello, asdf");
+>>>>>>> b98949736767e71fc67a5611b9b7c7bcfc38e5ad
 	}
 }
