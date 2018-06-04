@@ -50,27 +50,26 @@ public class Main extends JFrame
 		text.setBackground(Color.LIGHT_GRAY);
 		left.setMinimumSize(new Dimension(250,600));
 		//left.setPreferredSize(new Dimension(300,600));
-		JPanel middle = new JPanel();
-		middle.setMinimumSize(new Dimension(400,600));
+		JPanel middle = MindMapPanel.getInstance().getPanel();
 		//middle.setPreferredSize(new Dimension(400,600));	
 		JPanel right = new JPanel();
 		right.setLayout(null);
 		
-		JLabel size = new JLabel("≈©±‚");
+		JLabel size = new JLabel("ÌÅ¨Í∏∞");
 		size.setBounds(20, 20, 30, 30);
-		JLabel width = new JLabel("≥ ∫Ò");
+		JLabel width = new JLabel("ÎÑàÎπÑ");
 		width.setBounds(100, 40, 30, 30);
-		JLabel height = new JLabel("≥Ù¿Ã");
+		JLabel height = new JLabel("ÎÜíÏù¥");
 		height.setBounds(210, 40, 30, 30);
 		
-		JLabel location = new JLabel("¿ßƒ°");
+		JLabel location = new JLabel("ÏúÑÏπò");
 		location.setBounds(20, 100, 30, 30);
-		JLabel x = new JLabel("x");
+		JLabel x = new JLabel("X");
 		x.setBounds(100, 120, 30, 30);
-		JLabel y = new JLabel("y");
+		JLabel y = new JLabel("Y");
 		y.setBounds(210, 120, 30, 30);
 		
-		JLabel color = new JLabel("ªˆ");
+		JLabel color = new JLabel("ÏÉâ");
 		color.setBounds(20, 180, 30, 30);
 		JLabel hex = new JLabel("HEX");
 		hex.setBounds(100, 200, 30, 30);
@@ -118,6 +117,6 @@ public class Main extends JFrame
 	
 	public static void main(String[] args)
 	{
-		Main frame = new Main();
+		new Main();
 	}
 }
