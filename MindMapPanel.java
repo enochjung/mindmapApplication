@@ -21,9 +21,11 @@ public class MindMapPanel extends JPanel
 		ArrayList<Integer> indent = new ArrayList<>();
 
 		removeAll();
-		String[] names = query.split("\n");
+		updateUI();
+		
+		String[] names = query.split("\n");		
 		for(String name : names)
-		{
+		{			
 			if(name.trim().equals(""))
 			{
 				nodes.add(null);
@@ -36,25 +38,23 @@ public class MindMapPanel extends JPanel
 			
 			while(cnt<name.length() && name.charAt(cnt)=='\t')
 				++cnt;
-			for(int i=indent.size()-1; i>=-1; --i)
-			{
-				if(i == -1)
-					parent = null;
-				else if(indent.get(i) < cnt)
+			for(int i=indent.size()-1; i>=0; --i)
+				if(indent.get(i) < cnt)
 				{
 					parent = nodes.get(i);
 					break;
 				}
-			}
 			
+			name = name.trim();
 			int x = getRandom(60, 300);
 			int y = getRandom(100,500);
-			int width = 70;
+			int width = 70+name.length()*10;
 			int height = 40;
 			Color color = new Color(getRandom(150,255), getRandom(150,255), getRandom(150,255));
-			nodes.add(new JNode(name.trim(), x, y, width, height, color, parent));
+			nodes.add(new JNode(name, x, y, width, height, color, parent));
+			indent.add(cnt);
 		}
-		
+
 		for(JNode node : nodes)
 			if(node != null)
 				add(node);

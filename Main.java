@@ -3,6 +3,8 @@ package mindmapApplication;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,6 +63,7 @@ public class Main extends JFrame
 		JTextArea text = new JTextArea();
 		JScrollPane left = new JScrollPane(text);
 		
+		
 		text.setBackground(Color.LIGHT_GRAY);
 		left.setMinimumSize(new Dimension(200,600));
 		//left.setPreferredSize(new Dimension(300,600));
@@ -69,6 +72,15 @@ public class Main extends JFrame
 		
 		MindMapPanel middle = new MindMapPanel(500, 600);
 		middle.makeNodes("계절\n\t봄\n\t\t황사\n\t\n\t여름\n\t\t장마\n\t\t태풍\n\t가을\n\t\t단풍\n\t겨울\n\t\t폭설");
+		JButton btn = new JButton("적용");
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				middle.makeNodes(text.getText());
+			}
+		});
+		btn.setBounds(90, 20, 80, 30);
+		middle.add(btn);
 		
 		//////////////////
 		
