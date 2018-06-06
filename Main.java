@@ -1,7 +1,21 @@
 package mindmapApplication;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 public class Main extends JFrame
 {
@@ -48,9 +62,16 @@ public class Main extends JFrame
 		JScrollPane left = new JScrollPane(text);
 		
 		text.setBackground(Color.LIGHT_GRAY);
-		left.setMinimumSize(new Dimension(250,600));
+		left.setMinimumSize(new Dimension(200,600));
 		//left.setPreferredSize(new Dimension(300,600));
-		JPanel middle = MindMapPanel.getInstance().getPanel();
+		
+		//////////////////
+		
+		MindMapPanel middle = new MindMapPanel(500, 600);
+		middle.makeNodes("계절\n\t봄\n\t\t황사\n\t\n\t여름\n\t\t장마\n\t\t태풍\n\t가을\n\t\t단풍\n\t겨울\n\t\t폭설");
+		
+		//////////////////
+		
 		//middle.setPreferredSize(new Dimension(400,600));	
 		JPanel right = new JPanel();
 		right.setLayout(null);
@@ -101,7 +122,7 @@ public class Main extends JFrame
 		right.add(widthData);
 		right.add(size);
 		right.setBackground(Color.WHITE);
-		right.setMinimumSize(new Dimension(280,600));
+		right.setMinimumSize(new Dimension(200,600));
 		//right.setPreferredSize(new Dimension(300,600));
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,middle);
