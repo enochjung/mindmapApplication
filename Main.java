@@ -12,18 +12,22 @@ public class Main extends JFrame
 		
 		JMenuBar mb = new JMenuBar();
 		mb.setBackground(Color.GRAY);
-		JMenu fileMenu = new JMenu("File");
 		
-		fileMenu.add(new JMenuItem("Save"));
-		fileMenu.add(new JMenuItem("Save As"));
-		fileMenu.add(new JMenuItem("Load"));
+		JMenu fileMenu = new JMenu("File");
+		JMenuItem [] fileItem = new JMenuItem[6];
+		String [] fileTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		
+		//MenuActionListener listener = new MenuActionListener();
+		for(int i = 0; i < fileItem.length; i++)
+		{
+			fileItem[i] = new JMenuItem(fileTitle[i]);
+			//menuItem[i].addActionListener(listener);
+			fileMenu.add(fileItem[i]);
+		}
 		
 		JMenu editMenu = new JMenu("Edit");
-		
 		JMenu toolsMenu = new JMenu("Tools");
-		
 		JMenu viewMenu = new JMenu("View");
-		
 		JMenu helpMenu = new JMenu("Help");
 		
 		mb.add(fileMenu);
@@ -39,20 +43,32 @@ public class Main extends JFrame
 		toolBar.setBackground(Color.GRAY);
 		
 		toolBar.setFloatable(false);
-		toolBar.add(new JButton("New"));
+		
+		JButton [] toolBarItem = new JButton[6];
+		String [] toolBarTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		
+		for(int i = 0; i < fileItem.length; i++)
+		{
+			toolBarItem[i] = new JButton(toolBarTitle[i]);
+			toolBar.add(toolBarItem[i]);
+		}
 		
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
 		JTextArea text = new JTextArea();
-		JScrollPane left = new JScrollPane(text);
+		JPanel left = new JPanel();
+		JButton apply = new JButton("Àû¿ë");
+		left.setLayout(new BorderLayout(10,10));
+		left.add(new JScrollPane(text), BorderLayout.CENTER);
+		left.add(apply, BorderLayout.SOUTH);
 		
 		text.setBackground(Color.LIGHT_GRAY);
-		left.setMinimumSize(new Dimension(250,600));
-		//left.setPreferredSize(new Dimension(300,600));
+		left.setMinimumSize(new Dimension(200,600));
+		
 		JPanel middle = new JPanel();
-		middle.setMinimumSize(new Dimension(400,600));
-		//middle.setPreferredSize(new Dimension(400,600));	
+		middle.setMinimumSize(new Dimension(300,600));
+		
 		JPanel right = new JPanel();
 		right.setLayout(null);
 		
@@ -102,11 +118,13 @@ public class Main extends JFrame
 		right.add(widthData);
 		right.add(size);
 		right.setBackground(Color.WHITE);
-		right.setMinimumSize(new Dimension(280,600));
-		//right.setPreferredSize(new Dimension(300,600));
+		right.setMinimumSize(new Dimension(300,600));
+		
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,middle);
+		split.setDividerLocation(250);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,right);
+		split2.setDividerLocation(650);
 		
 		getContentPane().add(split2);
 		
