@@ -56,74 +56,12 @@ public class Main extends JFrame
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
-		JTextArea text = new JTextArea();
-		JPanel left = new JPanel();
-		JButton apply = new JButton("적용");
-		left.setLayout(new BorderLayout(10,10));
-		left.add(new JScrollPane(text), BorderLayout.CENTER);
-		left.add(apply, BorderLayout.SOUTH);
 		
-		text.setBackground(Color.LIGHT_GRAY);
-		left.setMinimumSize(new Dimension(200,600));
+		Split splitComponent = new Split();
 		
-		JPanel middle = new JPanel();
-		middle.setMinimumSize(new Dimension(300,600));
-		
-		JPanel right = new JPanel();
-		right.setLayout(null);
-		
-		JLabel size = new JLabel("크기");
-		size.setBounds(20, 20, 30, 30);
-		JLabel width = new JLabel("너비");
-		width.setBounds(100, 40, 30, 30);
-		JLabel height = new JLabel("높이");
-		height.setBounds(210, 40, 30, 30);
-		
-		JLabel location = new JLabel("위치");
-		location.setBounds(20, 100, 30, 30);
-		JLabel x = new JLabel("x");
-		x.setBounds(100, 120, 30, 30);
-		JLabel y = new JLabel("y");
-		y.setBounds(210, 120, 30, 30);
-		
-		JLabel color = new JLabel("색");
-		color.setBounds(20, 180, 30, 30);
-		JLabel hex = new JLabel("HEX");
-		hex.setBounds(100, 200, 30, 30);
-		
-		JTextField colorData = new JTextField();
-		colorData.setBounds(90, 180, 80, 30);
-		
-		JTextField xData = new JTextField();
-		xData.setBounds(90, 100, 80, 30);
-		JTextField yData = new JTextField();
-		yData.setBounds(200, 100, 80, 30);
-		
-		JTextField widthData = new JTextField();
-		widthData.setBounds(90, 20, 80, 30);
-		JTextField heightData = new JTextField();
-		heightData.setBounds(200, 20, 80, 30);
-		
-		right.add(hex);
-		right.add(x);
-		right.add(y);
-		right.add(height);
-		right.add(width);
-		right.add(colorData);
-		right.add(color);
-		right.add(xData);
-		right.add(yData);
-		right.add(location);
-		right.add(heightData);
-		right.add(widthData);
-		right.add(size);
-		right.setBackground(Color.WHITE);
-		right.setMinimumSize(new Dimension(300,600));
-		
-		
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,middle);
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitComponent.getLeft(),splitComponent.getMiddle());
 		split.setDividerLocation(250);
-		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,right);
+		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,splitComponent.getRight());
 		split2.setDividerLocation(650);
 		
 		getContentPane().add(split2);
