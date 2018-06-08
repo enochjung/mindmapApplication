@@ -69,19 +69,14 @@ public class Main extends JFrame
 		getContentPane().add(split2);
 		
 		//////////////////
-		
 		try {
 	    	
 	    	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-	    	//"javax.swing.plaf.nimbus.NimbusLookAndFeel"
-	    	//"com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"
-	    	
 	    	SwingUtilities.updateComponentTreeUI(this);
 	    }
 	    catch(Exception q) {
 	    	
 	    }
-		
 		/////
 		setSize(1000, 600);
 		int x = screenSize.width/2 - this.getWidth()/2;
