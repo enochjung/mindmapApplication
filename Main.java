@@ -1,6 +1,9 @@
 package mindmapApplication;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Main extends JFrame
@@ -16,14 +19,14 @@ public class Main extends JFrame
 		mb.setBackground(Color.GRAY);
 		
 		JMenu fileMenu = new JMenu("File");
-		JMenuItem [] fileItem = new JMenuItem[6];
-		String [] fileTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		String [] fileTitle = {"New", "Open File", "Save", "Save As", "Exit"};
+		JMenuItem [] fileItem = new JMenuItem[fileTitle.length];
 		
-		//MenuActionListener listener = new MenuActionListener();
+		MenuActionListener listener = new MenuActionListener();
 		for(int i = 0; i < fileItem.length; i++)
 		{
 			fileItem[i] = new JMenuItem(fileTitle[i]);
-			//menuItem[i].addActionListener(listener);
+			fileItem[i].addActionListener(listener);
 			fileMenu.add(fileItem[i]);
 		}
 		
@@ -46,10 +49,10 @@ public class Main extends JFrame
 		
 		toolBar.setFloatable(false);
 		
-		JButton [] toolBarItem = new JButton[6];
-		String [] toolBarTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		String [] toolBarTitle = {"New", "Open File", "Save", "Save As", "Exit"};
+		JButton [] toolBarItem = new JButton[toolBarTitle.length];
 		
-		for(int i = 0; i < fileItem.length; i++)
+		for(int i = 0; i < toolBarItem.length; i++)
 		{
 			toolBarItem[i] = new JButton(toolBarTitle[i]);
 			toolBar.add(toolBarItem[i]);
@@ -83,6 +86,29 @@ public class Main extends JFrame
 		int y = screenSize.height/2 - this.getHeight()/2;
 		this.setLocation(x, y);
 		setVisible(true);
+	}
+	
+	class MenuActionListener implements ActionListener { 
+		public void actionPerformed(ActionEvent e) {
+			String cmd = e.getActionCommand(); 
+			switch(cmd) {
+				case "New" :
+					
+					break;
+				case "Open File" :
+					
+					break;
+				case "Save" :
+					
+					break;
+				case "Save As" :
+					
+					break;
+				case "Exit" :
+					System.exit(0); 
+					break;
+			}
+		}
 	}
 	
 	public static void main(String[] args)

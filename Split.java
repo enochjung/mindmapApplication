@@ -27,6 +27,9 @@ public class Split extends JPanel
 		right = new JPanel();
 		right.setLayout(null);
 		
+		JButton change = new JButton("변경");
+		change.setBounds(125, 450, 100, 30);
+		
 		JLabel size = new JLabel("크기");
 		size.setBounds(20, 20, 30, 30);
 		JLabel width = new JLabel("너비");
@@ -59,6 +62,7 @@ public class Split extends JPanel
 		JTextField heightData = new JTextField();
 		heightData.setBounds(200, 20, 80, 30);
 		
+		right.add(change);
 		right.add(hex);
 		right.add(x);
 		right.add(y);
