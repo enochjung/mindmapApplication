@@ -71,7 +71,6 @@ public class Main extends JFrame
 		//////////////////
 		
 		MindMapPanel middle = new MindMapPanel(500, 600);
-		middle.makeNodes("계절\n\t봄\n\t\t황사\n\t\n\t여름\n\t\t장마\n\t\t태풍\n\t가을\n\t\t단풍\n\t겨울\n\t\t폭설");
 		JButton btn = new JButton("적용");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)

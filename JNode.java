@@ -65,7 +65,6 @@ public class JNode extends JLabel
 			int y = start.y+e.getY()-mouse.y;
 			setLocation(x, y);
 			start.move(x, y);
-			mindMapPanel.repaint();
 		}
 	}
 	
@@ -198,6 +197,20 @@ public class JNode extends JLabel
 		
 		g2.setStroke(new BasicStroke(5));
 		g2.draw(p);
+	}
+	
+	@Override
+	public void setLocation(int x, int y)
+	{
+		super.setLocation(x, y);
+		mindMapPanel.repaint();
+	}
+	
+	@Override
+	public void setSize(int width, int height)
+	{
+		super.setSize(width, height);
+		mindMapPanel.repaint();
 	}
 	
 	public JNode getParentNode()
