@@ -9,16 +9,6 @@ public class AttributePanel extends JPanel
 	
 	private JButton change = new JButton("변경");
 	
-	private JLabel textLabel = new JLabel("텍스트");
-	private JLabel size = new JLabel("크기");
-	private JLabel width = new JLabel("너비");
-	private JLabel height = new JLabel("높이");
-	private JLabel location = new JLabel("위치");
-	private JLabel x = new JLabel("x");
-	private JLabel y = new JLabel("y");
-	private JLabel color = new JLabel("색");
-	private JLabel hex = new JLabel("HEX");
-	
 	private JTextField textData = new JTextField(10);
 	private JTextField widthData = new JTextField(10);
 	private JTextField heightData = new JTextField(10);
@@ -28,10 +18,23 @@ public class AttributePanel extends JPanel
 	public AttributePanel()
 	{
 		super();
+		
+		JLabel textLabel = new JLabel("텍스트");
+		JLabel size = new JLabel("크기");
+		JLabel width = new JLabel("너비");
+		JLabel height = new JLabel("높이");
+		JLabel location = new JLabel("위치");
+		JLabel x = new JLabel("x");
+		JLabel y = new JLabel("y");
+		JLabel color = new JLabel("색");
+		JLabel hex = new JLabel("HEX");
+		
 		setLayout(new BorderLayout());
 		mainPanel.setLayout(null);
+		
 		textLabel.setBounds(20,20,50,30);
 		textData.setBounds(90,20,80,30);
+		textData.setEditable(false);
 		
 		size.setBounds(20, 100, 30, 30);
 		width.setBounds(115, 120, 30, 30);
@@ -73,5 +76,11 @@ public class AttributePanel extends JPanel
 		setMinimumSize(new Dimension(300,600));
 		setMaximumSize(new Dimension(300,600));
 	}
-	
+	/*
+	public static void setWidth(String data)
+	{
+		widthData.setText(data);
+		mainPanel.repaint();
+	}
+	*/
 }

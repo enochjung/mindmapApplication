@@ -29,19 +29,21 @@ public class Main extends JFrame
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);
 		split.setDividerLocation(250);
+		split.setDividerSize(0);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split, right);
-		split2.setDividerLocation(750);
-		
+		split2.setDividerLocation(780);
+		split2.setDividerSize(0);
+		//split2.setOneTouchExpandable(true);
 		getContentPane().add(split2);
 		
 		//////////////////
-		try {
-	    	
+		try 
+		{
 	    	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 	    	SwingUtilities.updateComponentTreeUI(this);
 	    }
-	    catch(Exception q) {
-	    	
+	    catch(Exception e) 
+		{	
 	    }
 		/////
 		setSize(1100, 600);
@@ -50,7 +52,6 @@ public class Main extends JFrame
 		this.setLocation(x, y);
 		setVisible(true);
 	}
-	
 	
 	public static void main(String[] args)
 	{

@@ -8,14 +8,14 @@ public class TextEditorPanel extends JPanel
 	private JButton apply;
 	public TextEditorPanel()
 	{
-	text = new JTextArea();
-	apply = new JButton("적용");
-	
-	setLayout(new BorderLayout(10,10));
-	add(new JScrollPane(text), BorderLayout.CENTER);
-	add(apply, BorderLayout.SOUTH);
-	text.setBackground(Color.LIGHT_GRAY);
-	text.setTabSize(2);
-	setMinimumSize(new Dimension(200,600));
+		text = new JTextArea();
+		apply = new JButton("적용");
+		
+		setLayout(new BorderLayout(10,10));
+		add(new JScrollPane(text), BorderLayout.CENTER);
+		add(apply, BorderLayout.SOUTH);
+		text.setBackground(Color.LIGHT_GRAY);
+		text.setTabSize(2);
+		setMinimumSize(new Dimension(200,600));
 	}
 }
