@@ -15,59 +15,22 @@ public class Main extends JFrame
 		setTitle("MindMapApp");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JMenuBar mb = new JMenuBar();
-		mb.setBackground(Color.GRAY);
-		
-		JMenu fileMenu = new JMenu("File");
-		String [] fileTitle = {"New", "Open File", "Save", "Save As", "Exit"};
-		JMenuItem [] fileItem = new JMenuItem[fileTitle.length];
-		
-		MenuActionListener listener = new MenuActionListener();
-		for(int i = 0; i < fileItem.length; i++)
-		{
-			fileItem[i] = new JMenuItem(fileTitle[i]);
-			fileItem[i].addActionListener(listener);
-			fileMenu.add(fileItem[i]);
-		}
-		
-		JMenu editMenu = new JMenu("Edit");
-		JMenu toolsMenu = new JMenu("Tools");
-		JMenu viewMenu = new JMenu("View");
-		JMenu helpMenu = new JMenu("Help");
-		
-		mb.add(fileMenu);
-		mb.add(editMenu);
-		mb.add(toolsMenu);
-		mb.add(viewMenu);
-		mb.add(helpMenu);
+		MyMenu mb = new MyMenu();
 		setJMenuBar(mb);
 		
-		///////////////////
-		
-		JToolBar toolBar = new JToolBar("Kitae Menu");
-		toolBar.setBackground(Color.GRAY);
-		
-		toolBar.setFloatable(false);
-		
-		String [] toolBarTitle = {"New", "Open File", "Save", "Save As", "Exit"};
-		JButton [] toolBarItem = new JButton[toolBarTitle.length];
-		
-		for(int i = 0; i < toolBarItem.length; i++)
-		{
-			toolBarItem[i] = new JButton(toolBarTitle[i]);
-			toolBar.add(toolBarItem[i]);
-		}
-		
+		MyToolBar toolBar = new MyToolBar();
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
 		
-		Split splitComponent = new Split();
+		TextEditorPanel left = new TextEditorPanel();
+		JPanel middle = new JPanel(); // mindMapPanel
+		AttributePanel right = new AttributePanel();
 		
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitComponent.getLeft(),splitComponent.getMiddle());
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);
 		split.setDividerLocation(250);
-		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,splitComponent.getRight());
-		split2.setDividerLocation(650);
+		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split, right);
+		split2.setDividerLocation(750);
 		
 		getContentPane().add(split2);
 		
@@ -81,35 +44,13 @@ public class Main extends JFrame
 	    	
 	    }
 		/////
-		setSize(1000, 600);
+		setSize(1100, 600);
 		int x = screenSize.width/2 - this.getWidth()/2;
 		int y = screenSize.height/2 - this.getHeight()/2;
 		this.setLocation(x, y);
 		setVisible(true);
 	}
 	
-	class MenuActionListener implements ActionListener { 
-		public void actionPerformed(ActionEvent e) {
-			String cmd = e.getActionCommand(); 
-			switch(cmd) {
-				case "New" :
-					
-					break;
-				case "Open File" :
-					
-					break;
-				case "Save" :
-					
-					break;
-				case "Save As" :
-					
-					break;
-				case "Exit" :
-					System.exit(0); 
-					break;
-			}
-		}
-	}
 	
 	public static void main(String[] args)
 	{
