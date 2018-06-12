@@ -1,7 +1,23 @@
 package mindmapApplication;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 public class Main extends JFrame
 {
@@ -58,35 +74,52 @@ public class Main extends JFrame
 		//////////////////
 		JTextArea text = new JTextArea();
 		JPanel left = new JPanel();
-		JButton apply = new JButton("¿˚øÎ");
+		JButton apply = new JButton("Ï†ÅÏö©");
 		left.setLayout(new BorderLayout(10,10));
 		left.add(new JScrollPane(text), BorderLayout.CENTER);
 		left.add(apply, BorderLayout.SOUTH);
 		
+		
 		text.setBackground(Color.LIGHT_GRAY);
 		left.setMinimumSize(new Dimension(200,600));
+    
+		//left.setPreferredSize(new Dimension(300,600));
 		
-		JPanel middle = new JPanel();
-		middle.setMinimumSize(new Dimension(300,600));
+		//////////////////
 		
+		MindMapPanel middle = new MindMapPanel(500, 600);
+		JButton btn = new JButton("ÔøΩ¬Å¬ö");
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				middle.makeNodes(text.getText());
+			}
+		});
+		btn.setBounds(90, 20, 80, 30);
+		middle.add(btn);
+		
+		//////////////////
+		
+		//middle.setPreferredSize(new Dimension(400,600));	
+    
 		JPanel right = new JPanel();
 		right.setLayout(null);
 		
-		JLabel size = new JLabel("≈©±‚");
+		JLabel size = new JLabel("¬Å—àÎ¶∞");
 		size.setBounds(20, 20, 30, 30);
-		JLabel width = new JLabel("≥ ∫Ò");
+		JLabel width = new JLabel("¬Ñ¬àÈçÆ¬Ñ");
 		width.setBounds(100, 40, 30, 30);
-		JLabel height = new JLabel("≥Ù¿Ã");
+		JLabel height = new JLabel("¬Ü¬í¬ù");
 		height.setBounds(210, 40, 30, 30);
 		
-		JLabel location = new JLabel("¿ßƒ°");
+		JLabel location = new JLabel("¬ú¬ÑÁßª¬ò");
 		location.setBounds(20, 100, 30, 30);
-		JLabel x = new JLabel("x");
+		JLabel x = new JLabel("X");
 		x.setBounds(100, 120, 30, 30);
-		JLabel y = new JLabel("y");
+		JLabel y = new JLabel("Y");
 		y.setBounds(210, 120, 30, 30);
 		
-		JLabel color = new JLabel("ªˆ");
+		JLabel color = new JLabel("¬É¬â");
 		color.setBounds(20, 180, 30, 30);
 		JLabel hex = new JLabel("HEX");
 		hex.setBounds(100, 200, 30, 30);
@@ -118,8 +151,9 @@ public class Main extends JFrame
 		right.add(widthData);
 		right.add(size);
 		right.setBackground(Color.WHITE);
-		right.setMinimumSize(new Dimension(300,600));
-		
+
+		right.setMinimumSize(new Dimension(200,600));
+		//right.setPreferredSize(new Dimension(300,600));
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,middle);
 		split.setDividerLocation(250);
@@ -136,6 +170,6 @@ public class Main extends JFrame
 	
 	public static void main(String[] args)
 	{
-		Main frame = new Main();
+		new Main();
 	}
 }
