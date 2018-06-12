@@ -22,12 +22,13 @@ public class Main extends JFrame
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
-		
+
 		TextEditorPanel left = new TextEditorPanel();
 		JPanel middle = new JPanel(); // mindMapPanel
 		AttributePanel right = new AttributePanel();
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);
+
 		split.setDividerLocation(250);
 		split.setDividerSize(0);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split, right);
@@ -55,6 +56,6 @@ public class Main extends JFrame
 	
 	public static void main(String[] args)
 	{
-		Main frame = new Main();
+		new Main();
 	}
 }
