@@ -9,12 +9,12 @@ public class AttributePanel extends JPanel
 	
 	private JButton change = new JButton("º¯°æ");
 	
-	private JTextField textData = new JTextField(10);
-	private JTextField widthData = new JTextField(10);
-	private JTextField heightData = new JTextField(10);
-	private JTextField xData = new JTextField(10);
-	private JTextField yData = new JTextField(10);
-	private JTextField colorData = new JTextField(10);
+	private static JTextField textData = new JTextField(10);
+	private static JTextField widthData = new JTextField(10);
+	private static JTextField heightData = new JTextField(10);
+	private static JTextField xData = new JTextField(10);
+	private static JTextField yData = new JTextField(10);
+	private static JTextField colorData = new JTextField(10);
 	public AttributePanel()
 	{
 		super();
@@ -76,11 +76,19 @@ public class AttributePanel extends JPanel
 		setMinimumSize(new Dimension(300,600));
 		setMaximumSize(new Dimension(300,600));
 	}
-	/*
-	public static void setWidth(String data)
+	
+	public static void setMainPanel(JNode data)
 	{
+		/*
+		textData.setText();
+		widthData 
+		heightData = new JTextField(10);
+		xData = new JTextField(10);
+		yData = new JTextField(10);
+		colorData = new JTextField(10);
 		widthData.setText(data);
 		mainPanel.repaint();
+		*/
 	}
-	*/
+	
 }
