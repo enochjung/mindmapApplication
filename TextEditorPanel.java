@@ -7,18 +7,20 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 public class TextEditorPanel extends JPanel
 {
-	private JTextArea text;
 	private JButton apply;
+	private static JTextArea text;
+	private static MindMapPanel smmp;
 	
 	public TextEditorPanel(MindMapPanel mmp)
 	{	
+		smmp = mmp;
 		text = new JTextArea();
 		apply = new JButton("적용");
 		apply.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				mmp.makeNodes(text.getText());
+				createMindMap();
 			}
 		});
 		
@@ -29,5 +31,11 @@ public class TextEditorPanel extends JPanel
 		text.setBackground(Color.LIGHT_GRAY);
 		text.setTabSize(2);
 		setMinimumSize(new Dimension(200,600));
+	}
+	
+	public static void createMindMap()
+	{
+		if(smmp != null)
+			smmp.makeNodes(text.getText());
 	}
 }

@@ -10,12 +10,15 @@ public class MyMenu extends JMenuBar
 	{
 		super();
 		setBackground(Color.GRAY);
+		MenuActionListener listener = new MenuActionListener();
 		
 		JMenu fileMenu = new JMenu("File");
 		String [] fileTitle = {"New", "Open File", "Save", "Save As", "Exit"};
+		String [] editTitle = {"Apply", "Change"};
 		JMenuItem [] fileItem = new JMenuItem[fileTitle.length];
+		JMenuItem [] editItem = new JMenuItem[editTitle.length];
 		
-		MenuActionListener listener = new MenuActionListener();
+		
 		for(int i = 0; i < fileItem.length; i++)
 		{
 			fileItem[i] = new JMenuItem(fileTitle[i]);
@@ -24,6 +27,13 @@ public class MyMenu extends JMenuBar
 		}
 		
 		JMenu editMenu = new JMenu("Edit");
+		for(int i = 0; i < editItem.length; i++)
+		{
+			editItem[i] = new JMenuItem(editTitle[i]);
+			editItem[i].addActionListener(listener);
+			editMenu.add(editItem[i]);
+		}
+		
 		JMenu toolsMenu = new JMenu("Tools");
 		JMenu viewMenu = new JMenu("View");
 		JMenu helpMenu = new JMenu("Help");
@@ -55,6 +65,12 @@ public class MyMenu extends JMenuBar
 					break;
 				case "Exit" :
 					System.exit(0); 
+					break;
+				case "Apply" :
+					TextEditorPanel.createMindMap();
+					break;
+				case "Change" :
+					AttributePanel.setJNode();
 					break;
 			}
 		}

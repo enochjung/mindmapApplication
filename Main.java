@@ -35,7 +35,6 @@ public class Main extends JFrame
 		//////////////////
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);
-
 		split.setDividerLocation(250);
 		split.setDividerSize(0);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split, right);
