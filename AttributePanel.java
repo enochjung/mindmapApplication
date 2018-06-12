@@ -14,7 +14,7 @@ public class AttributePanel extends JPanel
 	
 	private static JPanel mainPanel = new JPanel();
 	
-	private JButton change = new JButton("변경");
+	private MyButton change = new MyButton("변경");
 	
 	private static JTextField textData = new JTextField(10);
 	private static JTextField widthData = new JTextField(10);

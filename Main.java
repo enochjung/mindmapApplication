@@ -46,13 +46,14 @@ public class Main extends JFrame
 		
 		try 
 		{
-		   	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		   	SwingUtilities.updateComponentTreeUI(this);
+		  //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		  SwingUtilities.updateComponentTreeUI(this);
 	    }
 	    catch(Exception e) 
 		{	
 	    }
-
+		
 		setSize(1100, 600);
 		int x = screenSize.width/2 - this.getWidth()/2;
 		int y = screenSize.height/2 - this.getHeight()/2;

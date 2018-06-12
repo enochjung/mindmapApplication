@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 public class TextEditorPanel extends JPanel
 {
-	private JButton apply;
+	private MyButton apply;
 	private static JTextArea text;
 	private static MindMapPanel smmp;
 	
@@ -15,7 +15,7 @@ public class TextEditorPanel extends JPanel
 	{	
 		smmp = mmp;
 		text = new JTextArea();
-		apply = new JButton("적용");
+		apply = new MyButton("적용");
 		apply.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

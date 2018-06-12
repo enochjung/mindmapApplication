@@ -10,6 +10,7 @@ public class MyMenu extends JMenuBar
 	{
 		super();
 		setBackground(Color.GRAY);
+		setMargin(new Insets(0,10,0,10));
 		MenuActionListener listener = new MenuActionListener();
 		
 		JMenu fileMenu = new JMenu("File");
