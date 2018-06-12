@@ -22,7 +22,8 @@ public class TextEditorPanel extends JPanel
 			}
 		});
 		
-		setLayout(new BorderLayout(10,10));
+		setLayout(new BorderLayout());
+		setBackground(Color.LIGHT_GRAY);
 		add(new JScrollPane(text), BorderLayout.CENTER);
 		add(apply, BorderLayout.SOUTH);
 		text.setBackground(Color.LIGHT_GRAY);

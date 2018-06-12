@@ -1,10 +1,15 @@
 package mindmapApplication;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class AttributePanel extends JPanel
 {
+	private static JNode focus;
+	
 	private static JPanel mainPanel = new JPanel();
 	
 	private JButton change = new JButton("변경");
@@ -53,6 +58,15 @@ public class AttributePanel extends JPanel
 		colorData.setBounds(90, 260, 80, 30);
 		
 		change.setBounds(125, 500, 300, 30);
+		change.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				focus.setLocation(Integer.parseInt(xData.getText()), Integer.parseInt(yData.getText()));
+				focus.setSize(Integer.parseInt(widthData.getText()), Integer.parseInt(heightData.getText()));
+			}
+			
+		});
 		
 		mainPanel.add(textLabel);
 		mainPanel.add(textData);
@@ -105,5 +119,11 @@ public class AttributePanel extends JPanel
 		
 		mainPanel.repaint();
 	}
+	
+	public static void setFocus(JNode data)
+	{
+		focus = data;
+	}
+	
 	
 }

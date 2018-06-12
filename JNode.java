@@ -59,6 +59,7 @@ public class JNode extends JLabel
 			start.move(getX(), getY());
 			mouse.move(e.getX(), e.getY());
 			AttributePanel.setMainPanel(thisOne);
+			AttributePanel.setFocus(thisOne);
 		}
 		
 		@Override
@@ -68,6 +69,7 @@ public class JNode extends JLabel
 			int y = start.y+e.getY()-mouse.y;
 			setLocation(x, y);
 			start.move(x, y);
+			AttributePanel.setMainPanel(thisOne);
 		}
 	}
 	
