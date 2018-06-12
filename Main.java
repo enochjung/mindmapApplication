@@ -72,9 +72,17 @@ public class Main extends JFrame
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
+
+		MindMapPanel middle = new MindMapPanel(500, 600);
 		JTextArea text = new JTextArea();
 		JPanel left = new JPanel();
 		JButton apply = new JButton("적용");
+		apply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				middle.makeNodes(text.getText());
+			}
+		});
 		left.setLayout(new BorderLayout(10,10));
 		left.add(new JScrollPane(text), BorderLayout.CENTER);
 		left.add(apply, BorderLayout.SOUTH);
@@ -84,19 +92,6 @@ public class Main extends JFrame
 		left.setMinimumSize(new Dimension(200,600));
     
 		//left.setPreferredSize(new Dimension(300,600));
-		
-		//////////////////
-		
-		MindMapPanel middle = new MindMapPanel(500, 600);
-		JButton btn = new JButton("�");
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				middle.makeNodes(text.getText());
-			}
-		});
-		btn.setBounds(90, 20, 80, 30);
-		middle.add(btn);
 		
 		//////////////////
 		
