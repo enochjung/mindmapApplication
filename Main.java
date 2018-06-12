@@ -28,18 +28,22 @@ public class Main extends JFrame
 		
 		JMenuBar mb = new JMenuBar();
 		mb.setBackground(Color.GRAY);
-		JMenu fileMenu = new JMenu("File");
 		
-		fileMenu.add(new JMenuItem("Save"));
-		fileMenu.add(new JMenuItem("Save As"));
-		fileMenu.add(new JMenuItem("Load"));
+		JMenu fileMenu = new JMenu("File");
+		JMenuItem [] fileItem = new JMenuItem[6];
+		String [] fileTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		
+		//MenuActionListener listener = new MenuActionListener();
+		for(int i = 0; i < fileItem.length; i++)
+		{
+			fileItem[i] = new JMenuItem(fileTitle[i]);
+			//menuItem[i].addActionListener(listener);
+			fileMenu.add(fileItem[i]);
+		}
 		
 		JMenu editMenu = new JMenu("Edit");
-		
 		JMenu toolsMenu = new JMenu("Tools");
-		
 		JMenu viewMenu = new JMenu("View");
-		
 		JMenu helpMenu = new JMenu("Help");
 		
 		mb.add(fileMenu);
@@ -55,23 +59,36 @@ public class Main extends JFrame
 		toolBar.setBackground(Color.GRAY);
 		
 		toolBar.setFloatable(false);
-		toolBar.add(new JButton("New"));
+		
+		JButton [] toolBarItem = new JButton[6];
+		String [] toolBarTitle = {"New", "Open File", "Save", "Save As","Refresh", "Exit"};
+		
+		for(int i = 0; i < fileItem.length; i++)
+		{
+			toolBarItem[i] = new JButton(toolBarTitle[i]);
+			toolBar.add(toolBarItem[i]);
+		}
 		
 		getContentPane().add(toolBar, BorderLayout.NORTH);
 		
 		//////////////////
 		JTextArea text = new JTextArea();
-		JScrollPane left = new JScrollPane(text);
+		JPanel left = new JPanel();
+		JButton apply = new JButton("적용");
+		left.setLayout(new BorderLayout(10,10));
+		left.add(new JScrollPane(text), BorderLayout.CENTER);
+		left.add(apply, BorderLayout.SOUTH);
 		
 		
 		text.setBackground(Color.LIGHT_GRAY);
 		left.setMinimumSize(new Dimension(200,600));
+    
 		//left.setPreferredSize(new Dimension(300,600));
 		
 		//////////////////
 		
 		MindMapPanel middle = new MindMapPanel(500, 600);
-		JButton btn = new JButton("적용");
+		JButton btn = new JButton("�");
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
@@ -84,24 +101,25 @@ public class Main extends JFrame
 		//////////////////
 		
 		//middle.setPreferredSize(new Dimension(400,600));	
+    
 		JPanel right = new JPanel();
 		right.setLayout(null);
 		
-		JLabel size = new JLabel("크기");
+		JLabel size = new JLabel("ш린");
 		size.setBounds(20, 20, 30, 30);
-		JLabel width = new JLabel("너비");
+		JLabel width = new JLabel("鍮");
 		width.setBounds(100, 40, 30, 30);
-		JLabel height = new JLabel("높이");
+		JLabel height = new JLabel("");
 		height.setBounds(210, 40, 30, 30);
 		
-		JLabel location = new JLabel("위치");
+		JLabel location = new JLabel("移");
 		location.setBounds(20, 100, 30, 30);
 		JLabel x = new JLabel("X");
 		x.setBounds(100, 120, 30, 30);
 		JLabel y = new JLabel("Y");
 		y.setBounds(210, 120, 30, 30);
 		
-		JLabel color = new JLabel("색");
+		JLabel color = new JLabel("");
 		color.setBounds(20, 180, 30, 30);
 		JLabel hex = new JLabel("HEX");
 		hex.setBounds(100, 200, 30, 30);
@@ -133,11 +151,14 @@ public class Main extends JFrame
 		right.add(widthData);
 		right.add(size);
 		right.setBackground(Color.WHITE);
+
 		right.setMinimumSize(new Dimension(200,600));
 		//right.setPreferredSize(new Dimension(300,600));
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,left,middle);
+		split.setDividerLocation(250);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split,right);
+		split2.setDividerLocation(650);
 		
 		getContentPane().add(split2);
 		
