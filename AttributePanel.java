@@ -7,7 +7,7 @@ public class AttributePanel extends JPanel
 {
 	private JPanel mainPanel = new JPanel();
 	
-	private JButton change = new JButton("∫Ø∞Ê");
+	private JButton change = new JButton("Î≥ÄÍ≤Ω");
 	
 	private static JTextField textData = new JTextField(10);
 	private static JTextField widthData = new JTextField(10);
@@ -19,14 +19,14 @@ public class AttributePanel extends JPanel
 	{
 		super();
 		
-		JLabel textLabel = new JLabel("≈ÿΩ∫∆Æ");
-		JLabel size = new JLabel("≈©±‚");
-		JLabel width = new JLabel("≥ ∫Ò");
-		JLabel height = new JLabel("≥Ù¿Ã");
-		JLabel location = new JLabel("¿ßƒ°");
-		JLabel x = new JLabel("x");
-		JLabel y = new JLabel("y");
-		JLabel color = new JLabel("ªˆ");
+		JLabel textLabel = new JLabel("Ïù¥Î¶Ñ");
+		JLabel size = new JLabel("ÌÅ¨Í∏∞");
+		JLabel width = new JLabel("ÎÑàÎπÑ");
+		JLabel height = new JLabel("ÎÜíÏù¥");
+		JLabel location = new JLabel("ÏúÑÏπò");
+		JLabel x = new JLabel("X");
+		JLabel y = new JLabel("Y");
+		JLabel color = new JLabel("ÏÉâ");
 		JLabel hex = new JLabel("HEX");
 		
 		setLayout(new BorderLayout());

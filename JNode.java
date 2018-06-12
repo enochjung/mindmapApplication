@@ -24,6 +24,7 @@ public class JNode extends JLabel
 {
 	private MindMapPanel mindMapPanel;
 	private JNode parentNode;
+	private JNode thisOne;
 	
 	public JNode(MindMapPanel mindMapPanel, String label, int x, int y, int width, int height, Color color, JNode parentNode)
 	{
@@ -39,6 +40,7 @@ public class JNode extends JLabel
 
 		this.mindMapPanel = mindMapPanel;
 		this.parentNode = parentNode;
+		this.thisOne = this;
 	}
 	
 	private class MyMouseListener extends MouseAdapter implements MouseListener, MouseMotionListener
@@ -56,7 +58,7 @@ public class JNode extends JLabel
 		{
 			start.move(getX(), getY());
 			mouse.move(e.getX(), e.getY());
-			AttributePanel.setMainPanel(this);
+			AttributePanel.setMainPanel(thisOne);
 		}
 		
 		@Override

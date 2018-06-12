@@ -1,15 +1,26 @@
 package mindmapApplication;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 public class TextEditorPanel extends JPanel
 {
 	private JTextArea text;
 	private JButton apply;
-	public TextEditorPanel()
-	{
+	
+	public TextEditorPanel(MindMapPanel mmp)
+	{	
 		text = new JTextArea();
-		apply = new JButton("¿˚øÎ");
+		apply = new JButton("Ï†ÅÏö©");
+		apply.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				mmp.makeNodes(text.getText());
+			}
+		});
 		
 		setLayout(new BorderLayout(10,10));
 		add(new JScrollPane(text), BorderLayout.CENTER);
