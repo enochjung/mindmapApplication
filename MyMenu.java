@@ -9,8 +9,12 @@ public class MyMenu extends JMenuBar
 	public MyMenu()
 	{
 		super();
-		setBackground(Color.GRAY);
-		setMargin(new Insets(0,10,0,10));
+		
+		//setBackground(Color.GRAY);
+		//setMargin(new Insets(0,10,0,10));
+		setBorderPainted(false);
+		setOpaque(false);
+		
 		MenuActionListener listener = new MenuActionListener();
 		
 		JMenu fileMenu = new JMenu("File");
@@ -24,6 +28,7 @@ public class MyMenu extends JMenuBar
 		{
 			fileItem[i] = new JMenuItem(fileTitle[i]);
 			fileItem[i].addActionListener(listener);
+			//fileItem[i].setForeground(Color.WHITE);
 			fileMenu.add(fileItem[i]);
 		}
 		
@@ -76,4 +81,5 @@ public class MyMenu extends JMenuBar
 			}
 		}
 	}
+	
 }

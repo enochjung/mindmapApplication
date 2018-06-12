@@ -15,15 +15,15 @@ public class MyToolBar extends JToolBar
 		super("Kitae Menu");
 		setBackground(Color.GRAY);
 		setFloatable(false);
-		setMargin(new Insets(0,10,0,10));
+		//setMargin(new Insets(0,10,0,10));
 		ToolBarActionListener listener = new ToolBarActionListener();
 		
 		String [] toolBarTitle = {"New", "Open File", "Save", "Save As", "Apply", "Change","Exit"};
-		JButton [] toolBarItem = new MyButton[toolBarTitle.length];
+		JButton [] toolBarItem = new JButton[toolBarTitle.length];
 		
 		for(int i = 0; i < toolBarItem.length; i++)
 		{
-			toolBarItem[i] = new MyButton(toolBarTitle[i]);
+			toolBarItem[i] = new JButton(toolBarTitle[i]);
 			toolBarItem[i].addActionListener(listener);
 			add(toolBarItem[i]);
 		}
