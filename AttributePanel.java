@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class AttributePanel extends JPanel
 {
-	private JPanel mainPanel = new JPanel();
+	private static JPanel mainPanel = new JPanel();
 	
 	private JButton change = new JButton("변경");
 	
@@ -76,19 +76,34 @@ public class AttributePanel extends JPanel
 		setMinimumSize(new Dimension(300,600));
 		setMaximumSize(new Dimension(300,600));
 	}
+	public static String rgbToHex(String color)
+	{
+		String [] rgb;
+		color = color.replace("java.awt.Color[r=", "");
+		color = color.replace("g=", "");
+		color = color.replace("b=", "");
+		color = color.replace("]", "");
+		
+		
+		
+		return color;
+	}
 	
 	public static void setMainPanel(JNode data)
 	{
-		/*
-		textData.setText();
-		widthData 
-		heightData = new JTextField(10);
-		xData = new JTextField(10);
-		yData = new JTextField(10);
-		colorData = new JTextField(10);
-		widthData.setText(data);
+		String color = ""+data.getBackground();
+		textData.setText(data.getText());
+		widthData.setText(""+data.getWidth());
+		heightData.setText(""+data.getHeight());
+		xData.setText(""+data.getX());
+		yData.setText(""+data.getY());
+		
+		
+		color = rgbToHex(color);
+		
+		colorData.setText(color);
+		
 		mainPanel.repaint();
-		*/
 	}
 	
 }

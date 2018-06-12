@@ -47,8 +47,8 @@ public class Main extends JFrame
 		
 		try 
 		{
-		    //	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		    //	SwingUtilities.updateComponentTreeUI(this);
+		   	//UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		   	//SwingUtilities.updateComponentTreeUI(this);
 	    }
 	    catch(Exception e) 
 		{	
