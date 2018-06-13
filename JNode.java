@@ -17,16 +17,25 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Area;
 import java.awt.geom.CubicCurve2D;
 import java.awt.geom.RoundRectangle2D;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
 
 public class JNode extends JLabel
 {
+	private final static int SMALLBOX_SIZE = 6;
+	
+	private int code;
+	private int parentCode;
 	private MindMapPanel mindMapPanel;
 	private JNode parentNode;
 	private JNode thisOne;
+	private ArrayList<JLabel> selection;
 	
-	public JNode(MindMapPanel mindMapPanel, String label, int x, int y, int width, int height, Color color, JNode parentNode)
+	public JNode(int code, MindMapPanel mindMapPanel, String label, int x, int y, int width, int height, Color color, JNode parentNode)
 	{
 		super(label);
 		setBounds(x, y, width, height);
@@ -38,9 +47,34 @@ public class JNode extends JLabel
 		addMouseListener(listener);
 		addMouseMotionListener(listener);
 
+		this.code = code;
 		this.mindMapPanel = mindMapPanel;
 		this.parentNode = parentNode;
+		this.parentCode = parentNode==null? -1 : parentNode.getCode();
 		this.thisOne = this;
+		
+		selection = new ArrayList<>();
+		JLabel box = new JLabel();
+		box.setBounds(x, y, width, height);
+		box.setBorder(BorderFactory.createLineBorder(new Color(156, 179, 252)));
+		selection.add(box);
+		
+		for(int i=0; i<3; ++i)
+			for(int j=0; j<3; ++j)
+			{
+				if(i==1 && j==1)
+					continue;
+				JLabel small = new JLabel();
+				int tx = x+i*width/2-SMALLBOX_SIZE/2;
+				int ty = y+j*height/2-SMALLBOX_SIZE/2;
+				small.setBounds(tx, ty, SMALLBOX_SIZE, SMALLBOX_SIZE);
+				small.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+				small.setBackground(Color.WHITE);
+				small.setOpaque(true);
+				selection.add(small);
+			}
+		
+		focus(false);
 	}
 	
 	private class MyMouseListener extends MouseAdapter implements MouseListener, MouseMotionListener
@@ -206,6 +240,14 @@ public class JNode extends JLabel
 	public void setLocation(int x, int y)
 	{
 		super.setLocation(x, y);
+		selection.get(0).setLocation(x, y);
+		for(int i=1; i<9; ++i)
+		{
+			int idx = i<5? i-1 : i;
+			int tx = x+idx/3*getWidth()/2-SMALLBOX_SIZE/2;
+			int ty = y+idx%3*getHeight()/2-SMALLBOX_SIZE/2;
+			selection.get(i).setLocation(tx, ty);
+		}
 		mindMapPanel.repaint();
 	}
 	
@@ -213,7 +255,26 @@ public class JNode extends JLabel
 	public void setSize(int width, int height)
 	{
 		super.setSize(width, height);
+		selection.get(0).setSize(width, height);
+		for(int i=1; i<9; ++i)
+		{
+			int idx = i<5? i-1 : i;
+			int tx = getX()+idx/3*width/2-SMALLBOX_SIZE/2;
+			int ty = getY()+idx%3*height/2-SMALLBOX_SIZE/2;
+			selection.get(i).setLocation(tx, ty);
+		}
 		mindMapPanel.repaint();
+	}
+	
+	public void focus(boolean flag)
+	{
+		for(JLabel label : selection)
+			label.setVisible(flag);
+	}
+	
+	public int getCode()
+	{
+		return code;
 	}
 	
 	public JNode getParentNode()
@@ -221,9 +282,30 @@ public class JNode extends JLabel
 		return parentNode;
 	}
 	
+	public ArrayList<JLabel> getSelection()
+	{
+		return selection;
+	}
+	
+	public ArrayList<SimpleEntry<String,Object>> getData()
+	{
+		ArrayList<SimpleEntry<String,Object>> data = new ArrayList<>();
+
+		data.add(new SimpleEntry<String,Object>("code", code));
+		data.add(new SimpleEntry<String,Object>("parentCode", parentCode));
+		data.add(new SimpleEntry<String,Object>("label", getText()));
+		data.add(new SimpleEntry<String,Object>("x", getX()));
+		data.add(new SimpleEntry<String,Object>("y", getY()));
+		data.add(new SimpleEntry<String,Object>("width", getWidth()));
+		data.add(new SimpleEntry<String,Object>("height", getHeight()));
+		data.add(new SimpleEntry<String,Object>("color", getBackground()));
+		
+		return data;
+	}
+	
 	@Override
 	public String toString()
 	{
-		return "JNode[text="+getText()+",x="+getX()+",y="+getY()+",width="+getWidth()+",height="+getHeight()+",color="+getBackground()+",parent="+parentNode+"]";
+		return "JNode[code="+code+",text="+getText()+",x="+getX()+",y="+getY()+",width="+getWidth()+",height="+getHeight()+",color="+getBackground()+",parentCode="+parentCode+"]";
 	}
 }

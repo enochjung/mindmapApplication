@@ -6,8 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
+import java.util.AbstractMap.SimpleEntry;
 
 import javax.swing.JPanel;
+
+import org.json.simple.JSONObject;
 
 public class MindMapPanel extends JPanel
 {
@@ -38,6 +41,7 @@ public class MindMapPanel extends JPanel
 		updateUI();
 		
 		int nodeNum = 0;
+		int code = 0;
 		
 		String[] names = query.split("\n");		
 		for(String name : names)
@@ -86,7 +90,7 @@ public class MindMapPanel extends JPanel
 			name = name.trim();
 			int width = 70+name.length()*10;
 			int height = 40;
-			tmpNodes.add(new JNode(this, name, 0, 0, width, height, Color.BLACK, parent));
+			tmpNodes.add(new JNode(code++, this, name, 0, 0, width, height, Color.BLACK, parent));
 			indent.add(cnt);
 			++nodeNum;
 		}
@@ -150,7 +154,10 @@ public class MindMapPanel extends JPanel
 		for(JNode node : tmpNodes)
 			if(node != null)
 			{
+				for(int i=1; i<9; ++i)
+					add(node.getSelection().get(i));
 				add(node);
+				add(node.getSelection().get(0));
 				nodes.add(node);
 			}
 	}
@@ -175,6 +182,21 @@ public class MindMapPanel extends JPanel
 		for(JNode node : nodes)
 			if(node.getParentNode() != null)
 				node.draw(g2);
+	}
+	
+	public ArrayList<ArrayList<SimpleEntry<String,Object>>> getData()
+	{
+		ArrayList<ArrayList<SimpleEntry<String,Object>>> data = new ArrayList<>();
+		
+		for(JNode node : nodes)
+			data.add(node.getData());
+		
+		return data;
+	}
+	
+	public void readNodes(JSONObject jsonObject)
+	{
+		
 	}
 	
 	private int getRandom(int a, int b)
