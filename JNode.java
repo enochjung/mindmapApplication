@@ -17,7 +17,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Area;
 import java.awt.geom.CubicCurve2D;
 import java.awt.geom.RoundRectangle2D;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -287,18 +286,18 @@ public class JNode extends JLabel
 		return selection;
 	}
 	
-	public ArrayList<SimpleEntry<String,Object>> getData()
+	public ArrayList<Object> getData()
 	{
-		ArrayList<SimpleEntry<String,Object>> data = new ArrayList<>();
+		ArrayList<Object> data = new ArrayList<>();
 
-		data.add(new SimpleEntry<String,Object>("code", code));
-		data.add(new SimpleEntry<String,Object>("parentCode", parentCode));
-		data.add(new SimpleEntry<String,Object>("label", getText()));
-		data.add(new SimpleEntry<String,Object>("x", getX()));
-		data.add(new SimpleEntry<String,Object>("y", getY()));
-		data.add(new SimpleEntry<String,Object>("width", getWidth()));
-		data.add(new SimpleEntry<String,Object>("height", getHeight()));
-		data.add(new SimpleEntry<String,Object>("color", getBackground()));
+		data.add(code);
+		data.add(parentCode);
+		data.add(getText());
+		data.add(getX());
+		data.add(getY());
+		data.add(getWidth());
+		data.add(getHeight());
+		data.add(getBackground());
 		
 		return data;
 	}

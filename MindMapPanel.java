@@ -184,9 +184,9 @@ public class MindMapPanel extends JPanel
 				node.draw(g2);
 	}
 	
-	public ArrayList<ArrayList<SimpleEntry<String,Object>>> getData()
+	public ArrayList<ArrayList<Object>> getData()
 	{
-		ArrayList<ArrayList<SimpleEntry<String,Object>>> data = new ArrayList<>();
+		ArrayList<ArrayList<Object>> data = new ArrayList<>();
 		
 		for(JNode node : nodes)
 			data.add(node.getData());
@@ -194,9 +194,26 @@ public class MindMapPanel extends JPanel
 		return data;
 	}
 	
-	public void readNodes(JSONObject jsonObject)
+	public void readData(ArrayList<ArrayList<Object>> data)
 	{
+		nodes.clear();
+		removeAll();
+		updateUI();
 		
+		for(ArrayList<Object> datus : data)
+		{
+			int code = (Integer)datus.get(0);
+			int parentCode = (Integer)datus.get(1);
+			String label = (String)datus.get(2);
+			int x = (Integer)datus.get(3);
+			int y = (Integer)datus.get(4);
+			int width = (Integer)datus.get(5);
+			int height = (Integer)datus.get(6);
+			Color color = (Color)datus.get(7);
+			JNode parent = parentCode==-1? null : nodes.get(parentCode);
+
+			nodes.add(new JNode(code, this, label, x, y, width, height, color, parent));
+		}
 	}
 	
 	private int getRandom(int a, int b)
