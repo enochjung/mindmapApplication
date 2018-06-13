@@ -5,12 +5,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -22,17 +21,20 @@ public class FileManager
 	private static JFileChooser chooser = new JFileChooser();
 	private static FileNameExtensionFilter filter = new FileNameExtensionFilter("json", "json");
 	private static String pathName;
+	private static JFrame mainframe;
 	
-	public static void setMindMapPanel(MindMapPanel temp)
+	public static void setMindMapPanel(MindMapPanel temp, JFrame mf)
 	{
 		mmp = temp;
+		mainframe = mf;
 		chooser.setFileFilter(filter);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void openFile()
 	{
 		JSONParser parser = new JSONParser();
-		int ret = chooser.showOpenDialog(null);
+		int ret = chooser.showOpenDialog(mainframe);
 		if(ret == JFileChooser.APPROVE_OPTION)
 		{
 			pathName = chooser.getSelectedFile().getPath();	
@@ -54,6 +56,7 @@ public class FileManager
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void saveNewFile()
 	{
 		obj = new JSONObject();
@@ -63,7 +66,6 @@ public class FileManager
 			pathName = chooser.getSelectedFile().toString()+"."+chooser.getFileFilter().getDescription();
 			obj.put("data", mmp.getData());
 			obj.put("text", TextEditorPanel.sendText());
-			System.out.println(pathName);
 			try {
 				FileWriter file = new FileWriter(pathName);
 				file.write(obj.toJSONString());
@@ -75,6 +77,7 @@ public class FileManager
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void saveFile()
 	{
 		obj = new JSONObject();

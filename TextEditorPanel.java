@@ -21,7 +21,6 @@ public class TextEditorPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				createMindMap();
-				System.out.println(smmp.getData());
 			
 			}
 		});
@@ -36,7 +35,6 @@ public class TextEditorPanel extends JPanel
 	}
 	public static String sendText()
 	{
-		System.out.println(text.getText());
 		return text.getText();
 	}
 	

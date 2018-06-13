@@ -123,7 +123,7 @@ public class MindMapPanel extends JPanel
 				}
 				else if(dep == 1)
 				{
-					int length = (int)(130*Math.log10(nodeNum*50+1)/(depth.get(i)+1));
+					int length = (int)(120*Math.log10(nodeNum*50+1)/(depth.get(i)+1));
 					int parentX = node.getParentNode().getX()+node.getParentNode().getWidth()/2;
 					int parentY = node.getParentNode().getY()+node.getParentNode().getHeight()/2;
 					int idx = parentNum.get(i);
@@ -139,7 +139,7 @@ public class MindMapPanel extends JPanel
 				}
 				else
 				{
-					int length = (int)(130*Math.log10(nodeNum*50+1)/(depth.get(i)+1));
+					int length = (int)(120*Math.log10(nodeNum*50+1)/(depth.get(i)+1));
 					int parentX = node.getParentNode().getX()+node.getParentNode().getWidth()/2;
 					int parentY = node.getParentNode().getY()+node.getParentNode().getHeight()/2;
 					JNode granpa = node.getParentNode().getParentNode();
@@ -232,6 +232,7 @@ public class MindMapPanel extends JPanel
 
 	public void focusRemove()
 	{
+		AttributePanel.setFocus(null);
 		for(JNode node : nodes)
 			node.setFocus(false);
 	}

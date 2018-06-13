@@ -1,6 +1,5 @@
 package mindmapApplication;
 
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -39,16 +38,18 @@ public class MyMenu extends JMenuBar
 			editItem[i].addActionListener(listener);
 			editMenu.add(editItem[i]);
 		}
-		
+		/*
 		JMenu toolsMenu = new JMenu("Tools");
 		JMenu viewMenu = new JMenu("View");
 		JMenu helpMenu = new JMenu("Help");
-		
+		*/
 		add(fileMenu);
 		add(editMenu);
+		/*
 		add(toolsMenu);
 		add(viewMenu);
 		add(helpMenu);
+		*/
 	}
 	
 	class MenuActionListener implements ActionListener 

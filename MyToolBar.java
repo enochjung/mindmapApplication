@@ -1,7 +1,6 @@
 package mindmapApplication;
 
 import java.awt.Color;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,6 +48,8 @@ public class MyToolBar extends JToolBar
 				case "Save" :
 					if(FileManager.getPath() != null)
 						FileManager.saveFile();
+					else
+						FileManager.saveNewFile();
 					break;
 				case "Save As" :
 					FileManager.saveNewFile();

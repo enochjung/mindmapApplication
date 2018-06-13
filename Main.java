@@ -31,7 +31,7 @@ public class Main extends JFrame
 		middle = new MindMapPanel(500, 600);
 		left = new TextEditorPanel(middle);
 		right = new AttributePanel();
-		FileManager.setMindMapPanel(middle);
+		FileManager.setMindMapPanel(middle,this);
 		//////////////////
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);

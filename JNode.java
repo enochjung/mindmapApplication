@@ -87,7 +87,6 @@ public class JNode extends JLabel
 		{
 			start.move(getX(), getY());
 			mouse.move(e.getX(), e.getY());
-			AttributePanel.setMainPanel(thisOne);
 			mindMapPanel.focusRemove();
 			setFocus(true);
 		}
@@ -99,6 +98,7 @@ public class JNode extends JLabel
 			int y = start.y+e.getY()-mouse.y;
 			setLocation(x, y);
 			start.move(x, y);
+			AttributePanel.setMainPanel(thisOne);
 		}
 	}
 	
@@ -270,6 +270,8 @@ public class JNode extends JLabel
 	
 	public void setFocus(boolean flag)
 	{
+		if(flag)
+			AttributePanel.setFocus(thisOne);
 		for(JLabel label : selection)
 			label.setVisible(flag);
 	}

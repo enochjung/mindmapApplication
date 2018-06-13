@@ -63,6 +63,7 @@ public class AttributePanel extends JPanel
 		color.setBounds(20, 260, 30, 30);
 		hex.setBounds(115, 280, 30, 30);
 		colorData.setBounds(90, 260, 80, 30);
+		colorData.addKeyListener(kl);
 		
 		change.setBounds(125, 500, 300, 30);
 		change.addActionListener(new ActionListener()
@@ -103,6 +104,8 @@ public class AttributePanel extends JPanel
 		{
 			focus.setLocation(Integer.parseInt(xData.getText()), Integer.parseInt(yData.getText()));
 			focus.setSize(Integer.parseInt(widthData.getText()), Integer.parseInt(heightData.getText()));
+			int v = Integer.parseInt(colorData.getText(), 16);
+			focus.setBackground(new Color(v/65536,v/256%256,v%256));
 		}
 	}
 	
@@ -119,22 +122,29 @@ public class AttributePanel extends JPanel
 	public static String rgbToHex(Color color)
 	{
 		String hex;
-		hex = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+		hex = String.format("%02X%02X%02X", color.getRed(), color.getGreen(), color.getBlue());
 		
 		return hex;
 	}
 	
 	public static void setMainPanel(JNode data)
 	{
-		Color color = data.getBackground();
-		
-		textData.setText(data.getText());
-		widthData.setText(""+data.getWidth());
-		heightData.setText(""+data.getHeight());
-		xData.setText(""+data.getX());
-		yData.setText(""+data.getY());
-		
-		colorData.setText(rgbToHex(color));
+		if(data!=null)
+		{
+			Color color = data.getBackground();
+			
+			textData.setText(data.getText());
+			widthData.setText(""+data.getWidth());
+			heightData.setText(""+data.getHeight());
+			xData.setText(""+data.getX());
+			yData.setText(""+data.getY());
+			
+			colorData.setText(rgbToHex(color));
+		}
+		else
+		{
+			clearPanel();
+		}
 		
 		mainPanel.repaint();
 	}
@@ -154,6 +164,7 @@ public class AttributePanel extends JPanel
 	public static void setFocus(JNode data)
 	{
 		focus = data;
+		setMainPanel(focus);
 	}
 	
 	

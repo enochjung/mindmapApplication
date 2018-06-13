@@ -53,6 +53,7 @@ public class JSizeBox extends JLabel
 			y = node.getY();
 			width = node.getWidth();
 			height = node.getHeight();
+			AttributePanel.setMainPanel(node);
 		}
 		
 		@Override
@@ -84,6 +85,7 @@ public class JSizeBox extends JLabel
 			
 			node.setLocation(toX, toY);
 			node.setSize(toWidth, toHeight);
+			AttributePanel.setMainPanel(node);
 		}
 	}
 }
