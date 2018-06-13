@@ -7,26 +7,47 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 public class TextEditorPanel extends JPanel
 {
-	private JTextArea text;
 	private JButton apply;
+	private static JTextArea text;
+	private static MindMapPanel smmp;
 	
 	public TextEditorPanel(MindMapPanel mmp)
 	{	
+		smmp = mmp;
 		text = new JTextArea();
 		apply = new JButton("적용");
 		apply.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				mmp.makeNodes(text.getText());
+				createMindMap();
+				System.out.println(smmp.getData());
+			
 			}
 		});
 		
-		setLayout(new BorderLayout(10,10));
+		setLayout(new BorderLayout());
+		setBackground(Color.LIGHT_GRAY);
 		add(new JScrollPane(text), BorderLayout.CENTER);
 		add(apply, BorderLayout.SOUTH);
 		text.setBackground(Color.LIGHT_GRAY);
 		text.setTabSize(2);
 		setMinimumSize(new Dimension(200,600));
+	}
+	public static String sendText()
+	{
+		System.out.println(text.getText());
+		return text.getText();
+	}
+	
+	public static void setdata(String data)
+	{
+		text.setText(data);
+	}
+	
+	public static void createMindMap()
+	{
+		if(smmp != null)
+			smmp.makeNodes(text.getText());
 	}
 }

@@ -225,6 +225,9 @@ public class MindMapPanel extends JPanel
 
 			nodes.add(new JNode(code, this, label, x, y, width, height, color, parent));
 		}
+
+		for(JNode node : nodes)
+			add(node);
 	}
 
 	public void focusRemove()

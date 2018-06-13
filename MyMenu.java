@@ -9,21 +9,37 @@ public class MyMenu extends JMenuBar
 	public MyMenu()
 	{
 		super();
-		setBackground(Color.GRAY);
+		
+		//setBackground(Color.GRAY);
+		//setMargin(new Insets(0,10,0,10));
+		setBorderPainted(false);
+		setOpaque(false);
+		
+		MenuActionListener listener = new MenuActionListener();
 		
 		JMenu fileMenu = new JMenu("File");
 		String [] fileTitle = {"New", "Open File", "Save", "Save As", "Exit"};
+		String [] editTitle = {"Apply", "Change"};
 		JMenuItem [] fileItem = new JMenuItem[fileTitle.length];
+		JMenuItem [] editItem = new JMenuItem[editTitle.length];
 		
-		MenuActionListener listener = new MenuActionListener();
+		
 		for(int i = 0; i < fileItem.length; i++)
 		{
 			fileItem[i] = new JMenuItem(fileTitle[i]);
 			fileItem[i].addActionListener(listener);
+			//fileItem[i].setForeground(Color.WHITE);
 			fileMenu.add(fileItem[i]);
 		}
 		
 		JMenu editMenu = new JMenu("Edit");
+		for(int i = 0; i < editItem.length; i++)
+		{
+			editItem[i] = new JMenuItem(editTitle[i]);
+			editItem[i].addActionListener(listener);
+			editMenu.add(editItem[i]);
+		}
+		
 		JMenu toolsMenu = new JMenu("Tools");
 		JMenu viewMenu = new JMenu("View");
 		JMenu helpMenu = new JMenu("Help");
@@ -42,21 +58,34 @@ public class MyMenu extends JMenuBar
 			String cmd = e.getActionCommand(); 
 			switch(cmd) {
 				case "New" :
-					
+					if(FileManager.getPath() == null && !TextEditorPanel.sendText().equals(""))
+						FileManager.saveNewFile();
+					FileManager.resetPath();
+					FileManager.clearMiddle();
+					TextEditorPanel.setdata("");
+					AttributePanel.clearPanel();
 					break;
 				case "Open File" :
-					
+					FileManager.openFile();
 					break;
 				case "Save" :
-					
+					if(FileManager.getPath() != null)
+						FileManager.saveFile();
 					break;
 				case "Save As" :
-					
+					FileManager.saveNewFile();
 					break;
 				case "Exit" :
 					System.exit(0); 
 					break;
+				case "Apply" :
+					TextEditorPanel.createMindMap();
+					break;
+				case "Change" :
+					AttributePanel.setJNode();
+					break;
 			}
 		}
 	}
+	
 }

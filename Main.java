@@ -31,15 +31,14 @@ public class Main extends JFrame
 		middle = new MindMapPanel(500, 600);
 		left = new TextEditorPanel(middle);
 		right = new AttributePanel();
-
+		FileManager.setMindMapPanel(middle);
 		//////////////////
 		
 		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, middle);
-
 		split.setDividerLocation(250);
 		split.setDividerSize(0);
 		JSplitPane split2 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split, right);
-		split2.setDividerLocation(780);
+		split2.setDividerLocation(1080);
 		split2.setDividerSize(0);
 		getContentPane().add(split2);
 		
@@ -47,14 +46,15 @@ public class Main extends JFrame
 		
 		try 
 		{
-		    //	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		    //	SwingUtilities.updateComponentTreeUI(this);
+		  UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		  //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		  SwingUtilities.updateComponentTreeUI(this);
 	    }
 	    catch(Exception e) 
 		{	
 	    }
-
-		setSize(1100, 600);
+		
+		setSize(1400, 800);
 		int x = screenSize.width/2 - this.getWidth()/2;
 		int y = screenSize.height/2 - this.getHeight()/2;
 		this.setLocation(x, y);

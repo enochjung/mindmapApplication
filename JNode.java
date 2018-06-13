@@ -63,6 +63,7 @@ public class JNode extends JLabel
 			{
 				if(i==1 && j==1)
 					continue;
+
 				int tx = x+i*width/2-SMALLBOX_SIZE/2;
 				int ty = y+j*height/2-SMALLBOX_SIZE/2;
 				selection.add(new JSizeBox(thisOne, i, j, tx, ty, SMALLBOX_SIZE));

@@ -1,11 +1,18 @@
 package mindmapApplication;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.*;
 
 public class AttributePanel extends JPanel
 {
-	private JPanel mainPanel = new JPanel();
+	private static JNode focus;
+	
+	private static JPanel mainPanel = new JPanel();
 	
 	private JButton change = new JButton("변경");
 	
@@ -18,6 +25,7 @@ public class AttributePanel extends JPanel
 	public AttributePanel()
 	{
 		super();
+		MyKeyListener kl = new MyKeyListener();
 		
 		JLabel textLabel = new JLabel("이름");
 		JLabel size = new JLabel("크기");
@@ -40,19 +48,31 @@ public class AttributePanel extends JPanel
 		width.setBounds(115, 120, 30, 30);
 		height.setBounds(225, 120, 30, 30);
 		heightData.setBounds(200, 100, 80, 30);
+		heightData.addKeyListener(kl);
 		widthData.setBounds(90, 100, 80, 30);
+		widthData.addKeyListener(kl);
 		
 		location.setBounds(20, 180, 30, 30);
 		x.setBounds(127, 200, 30, 30);
 		y.setBounds(237, 200, 30, 30);
 		xData.setBounds(90, 180, 80, 30);
+		xData.addKeyListener(kl);
 		yData.setBounds(200, 180, 80, 30);
+		yData.addKeyListener(kl);
 		
 		color.setBounds(20, 260, 30, 30);
 		hex.setBounds(115, 280, 30, 30);
 		colorData.setBounds(90, 260, 80, 30);
 		
 		change.setBounds(125, 500, 300, 30);
+		change.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				setJNode();
+			}
+			
+		});
 		
 		mainPanel.add(textLabel);
 		mainPanel.add(textData);
@@ -75,20 +95,66 @@ public class AttributePanel extends JPanel
 		setBackground(Color.WHITE);
 		setMinimumSize(new Dimension(300,600));
 		setMaximumSize(new Dimension(300,600));
+		
+	}
+	public static void setJNode()
+	{
+		if(focus != null)
+		{
+			focus.setLocation(Integer.parseInt(xData.getText()), Integer.parseInt(yData.getText()));
+			focus.setSize(Integer.parseInt(widthData.getText()), Integer.parseInt(heightData.getText()));
+		}
+	}
+	
+	class MyKeyListener extends KeyAdapter {
+		public void keyReleased(KeyEvent e)
+		{
+			if(e.getKeyCode() == KeyEvent.VK_ENTER)
+			{
+				setJNode();
+			}
+		}
+	}
+	
+	public static String rgbToHex(Color color)
+	{
+		String hex;
+		hex = String.format("%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+		
+		return hex;
 	}
 	
 	public static void setMainPanel(JNode data)
 	{
-		/*
-		textData.setText();
-		widthData 
-		heightData = new JTextField(10);
-		xData = new JTextField(10);
-		yData = new JTextField(10);
-		colorData = new JTextField(10);
-		widthData.setText(data);
+		Color color = data.getBackground();
+		
+		textData.setText(data.getText());
+		widthData.setText(""+data.getWidth());
+		heightData.setText(""+data.getHeight());
+		xData.setText(""+data.getX());
+		yData.setText(""+data.getY());
+		
+		colorData.setText(rgbToHex(color));
+		
 		mainPanel.repaint();
-		*/
 	}
+	
+	public static void clearPanel()
+	{
+		textData.setText("");
+		widthData.setText("");
+		heightData.setText("");
+		xData.setText("");
+		yData.setText("");
+		colorData.setText("");
+		
+		mainPanel.repaint();
+	}
+	
+	public static void setFocus(JNode data)
+	{
+		focus = data;
+	}
+	
 	
 }
