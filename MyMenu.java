@@ -61,10 +61,10 @@ public class MyMenu extends JMenuBar
 					
 					break;
 				case "Open File" :
-					
+					FileManager.openFile();
 					break;
 				case "Save" :
-					
+					FileManager.openFile();
 					break;
 				case "Save As" :
 					
