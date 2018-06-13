@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -20,6 +22,15 @@ public class MindMapPanel extends JPanel
 		setMinimumSize(new Dimension(width, height));
 		
 		nodes = new ArrayList<>();
+		
+		addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				focusRemove();
+			}
+		});
 	}
 	
 	public void makeNodes(String query)
@@ -199,18 +210,27 @@ public class MindMapPanel extends JPanel
 		
 		for(ArrayList<Object> datus : data)
 		{
-			int code = (Integer)datus.get(0);
-			int parentCode = (Integer)datus.get(1);
+			int code = ((Long)datus.get(0)).intValue();
+			int parentCode = ((Long)datus.get(1)).intValue();
 			String label = (String)datus.get(2);
-			int x = (Integer)datus.get(3);
-			int y = (Integer)datus.get(4);
-			int width = (Integer)datus.get(5);
-			int height = (Integer)datus.get(6);
-			Color color = (Color)datus.get(7);
+			int x = ((Long)datus.get(3)).intValue();
+			int y = ((Long)datus.get(4)).intValue();
+			int width = ((Long)datus.get(5)).intValue();
+			int height = ((Long)datus.get(6)).intValue();
+			int r = ((Long)datus.get(7)).intValue();
+			int g = ((Long)datus.get(8)).intValue();
+			int b = ((Long)datus.get(9)).intValue();
+			Color color = new Color(r, g, b);
 			JNode parent = parentCode==-1? null : nodes.get(parentCode);
 
 			nodes.add(new JNode(code, this, label, x, y, width, height, color, parent));
 		}
+	}
+
+	public void focusRemove()
+	{
+		for(JNode node : nodes)
+			node.setFocus(false);
 	}
 	
 	private int getRandom(int a, int b)
