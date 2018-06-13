@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -20,6 +22,15 @@ public class MindMapPanel extends JPanel
 		setMinimumSize(new Dimension(width, height));
 		
 		nodes = new ArrayList<>();
+		
+		addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mousePressed(MouseEvent e)
+			{
+				focusRemove();
+			}
+		});
 	}
 	
 	public void makeNodes(String query)
@@ -214,9 +225,15 @@ public class MindMapPanel extends JPanel
 
 			nodes.add(new JNode(code, this, label, x, y, width, height, color, parent));
 		}
-		
+
 		for(JNode node : nodes)
 			add(node);
+	}
+
+	public void focusRemove()
+	{
+		for(JNode node : nodes)
+			node.setFocus(false);
 	}
 	
 	private int getRandom(int a, int b)

@@ -63,17 +63,13 @@ public class JNode extends JLabel
 			{
 				if(i==1 && j==1)
 					continue;
-				JLabel small = new JLabel();
+
 				int tx = x+i*width/2-SMALLBOX_SIZE/2;
 				int ty = y+j*height/2-SMALLBOX_SIZE/2;
-				small.setBounds(tx, ty, SMALLBOX_SIZE, SMALLBOX_SIZE);
-				small.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-				small.setBackground(Color.WHITE);
-				small.setOpaque(true);
-				selection.add(small);
+				selection.add(new JSizeBox(thisOne, i, j, tx, ty, SMALLBOX_SIZE));
 			}
 		
-		focus(false);
+		setFocus(false);
 	}
 	
 	private class MyMouseListener extends MouseAdapter implements MouseListener, MouseMotionListener
@@ -92,6 +88,8 @@ public class JNode extends JLabel
 			start.move(getX(), getY());
 			mouse.move(e.getX(), e.getY());
 			AttributePanel.setMainPanel(thisOne);
+			mindMapPanel.focusRemove();
+			setFocus(true);
 		}
 		
 		@Override
@@ -253,6 +251,11 @@ public class JNode extends JLabel
 	@Override
 	public void setSize(int width, int height)
 	{
+		int minimumSize = 20;
+		if(width < minimumSize)
+			width = minimumSize;
+		if(height < minimumSize)
+			height = minimumSize;
 		super.setSize(width, height);
 		selection.get(0).setSize(width, height);
 		for(int i=1; i<9; ++i)
@@ -265,7 +268,7 @@ public class JNode extends JLabel
 		mindMapPanel.repaint();
 	}
 	
-	public void focus(boolean flag)
+	public void setFocus(boolean flag)
 	{
 		for(JLabel label : selection)
 			label.setVisible(flag);
