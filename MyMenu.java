@@ -58,16 +58,22 @@ public class MyMenu extends JMenuBar
 			String cmd = e.getActionCommand(); 
 			switch(cmd) {
 				case "New" :
-					
+					if(FileManager.getPath() == null && !TextEditorPanel.sendText().equals(""))
+						FileManager.saveNewFile();
+					FileManager.resetPath();
+					FileManager.clearMiddle();
+					TextEditorPanel.setdata("");
+					AttributePanel.clearPanel();
 					break;
 				case "Open File" :
 					FileManager.openFile();
 					break;
 				case "Save" :
-					FileManager.openFile();
+					if(FileManager.getPath() != null)
+						FileManager.saveFile();
 					break;
 				case "Save As" :
-					
+					FileManager.saveNewFile();
 					break;
 				case "Exit" :
 					System.exit(0); 

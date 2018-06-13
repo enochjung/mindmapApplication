@@ -95,6 +95,7 @@ public class AttributePanel extends JPanel
 		setBackground(Color.WHITE);
 		setMinimumSize(new Dimension(300,600));
 		setMaximumSize(new Dimension(300,600));
+		
 	}
 	public static void setJNode()
 	{
@@ -134,6 +135,18 @@ public class AttributePanel extends JPanel
 		yData.setText(""+data.getY());
 		
 		colorData.setText(rgbToHex(color));
+		
+		mainPanel.repaint();
+	}
+	
+	public static void clearPanel()
+	{
+		textData.setText("");
+		widthData.setText("");
+		heightData.setText("");
+		xData.setText("");
+		yData.setText("");
+		colorData.setText("");
 		
 		mainPanel.repaint();
 	}

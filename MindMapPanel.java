@@ -38,6 +38,7 @@ public class MindMapPanel extends JPanel
 		updateUI();
 		
 		int nodeNum = 0;
+		int code = 0;
 		
 		String[] names = query.split("\n");		
 		for(String name : names)
@@ -86,7 +87,7 @@ public class MindMapPanel extends JPanel
 			name = name.trim();
 			int width = 70+name.length()*10;
 			int height = 40;
-			tmpNodes.add(new JNode(this, name, 0, 0, width, height, Color.BLACK, parent));
+			tmpNodes.add(new JNode(code++, this, name, 0, 0, width, height, Color.BLACK, parent));
 			indent.add(cnt);
 			++nodeNum;
 		}
@@ -150,7 +151,10 @@ public class MindMapPanel extends JPanel
 		for(JNode node : tmpNodes)
 			if(node != null)
 			{
+				for(int i=1; i<9; ++i)
+					add(node.getSelection().get(i));
 				add(node);
+				add(node.getSelection().get(0));
 				nodes.add(node);
 			}
 	}
@@ -175,6 +179,44 @@ public class MindMapPanel extends JPanel
 		for(JNode node : nodes)
 			if(node.getParentNode() != null)
 				node.draw(g2);
+	}
+	
+	public ArrayList<ArrayList<Object>> getData()
+	{
+		ArrayList<ArrayList<Object>> data = new ArrayList<>();
+		
+		for(JNode node : nodes)
+			data.add(node.getData());
+		
+		return data;
+	}
+	
+	public void readData(ArrayList<ArrayList<Object>> data)
+	{
+		nodes.clear();
+		removeAll();
+		updateUI();
+		
+		for(ArrayList<Object> datus : data)
+		{
+			int code = ((Long)datus.get(0)).intValue();
+			int parentCode = ((Long)datus.get(1)).intValue();
+			String label = (String)datus.get(2);
+			int x = ((Long)datus.get(3)).intValue();
+			int y = ((Long)datus.get(4)).intValue();
+			int width = ((Long)datus.get(5)).intValue();
+			int height = ((Long)datus.get(6)).intValue();
+			int r = ((Long)datus.get(7)).intValue();
+			int g = ((Long)datus.get(8)).intValue();
+			int b = ((Long)datus.get(9)).intValue();
+			Color color = new Color(r, g, b);
+			JNode parent = parentCode==-1? null : nodes.get(parentCode);
+
+			nodes.add(new JNode(code, this, label, x, y, width, height, color, parent));
+		}
+		
+		for(JNode node : nodes)
+			add(node);
 	}
 	
 	private int getRandom(int a, int b)

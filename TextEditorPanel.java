@@ -21,6 +21,8 @@ public class TextEditorPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				createMindMap();
+				System.out.println(smmp.getData());
+			
 			}
 		});
 		
@@ -31,6 +33,16 @@ public class TextEditorPanel extends JPanel
 		text.setBackground(Color.LIGHT_GRAY);
 		text.setTabSize(2);
 		setMinimumSize(new Dimension(200,600));
+	}
+	public static String sendText()
+	{
+		System.out.println(text.getText());
+		return text.getText();
+	}
+	
+	public static void setdata(String data)
+	{
+		text.setText(data);
 	}
 	
 	public static void createMindMap()

@@ -54,5 +54,4 @@ public class MyButton extends JButton
 	    graphics.dispose(); 
 	    super.paintComponent(g);
 	}
-	//출처: http://the-illusionist.me/42 [The Illusionist]
 }

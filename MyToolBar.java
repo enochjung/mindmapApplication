@@ -15,7 +15,6 @@ public class MyToolBar extends JToolBar
 		super("Kitae Menu");
 		setBackground(Color.GRAY);
 		setFloatable(false);
-		//setMargin(new Insets(0,10,0,10));
 		ToolBarActionListener listener = new ToolBarActionListener();
 		
 		String [] toolBarTitle = {"New", "Open File", "Save", "Save As", "Apply", "Change","Exit"};
@@ -29,6 +28,7 @@ public class MyToolBar extends JToolBar
 		}
 		
 	}
+
 	class ToolBarActionListener implements ActionListener 
 	{ 
 		public void actionPerformed(ActionEvent e) 
@@ -36,16 +36,22 @@ public class MyToolBar extends JToolBar
 			String cmd = e.getActionCommand(); 
 			switch(cmd) {
 				case "New" :
-					
+					if(FileManager.getPath() == null && !TextEditorPanel.sendText().equals(""))
+						FileManager.saveNewFile();
+					FileManager.resetPath();
+					FileManager.clearMiddle();
+					TextEditorPanel.setdata("");
+					AttributePanel.clearPanel();
 					break;
 				case "Open File" :
-					
+					FileManager.openFile();
 					break;
 				case "Save" :
-					
+					if(FileManager.getPath() != null)
+						FileManager.saveFile();
 					break;
 				case "Save As" :
-					
+					FileManager.saveNewFile();
 					break;
 				case "Exit" :
 					System.exit(0); 
