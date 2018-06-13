@@ -6,11 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
-import java.util.AbstractMap.SimpleEntry;
 
 import javax.swing.JPanel;
-
-import org.json.simple.JSONObject;
 
 public class MindMapPanel extends JPanel
 {
